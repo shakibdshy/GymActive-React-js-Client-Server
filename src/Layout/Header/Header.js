@@ -53,7 +53,7 @@ const Header = () => {
                             to={item.href}
                             className={classNames(
                               item.current
-                                ? "bg-gray-900 text-white"
+                                ? "bg-gray-600 text-white"
                                 : "text-gray-900 hover:bg-gray-700 hover:text-white",
                               "px-3 py-2 rounded-md text-lg font-bold transition-all ease-in duration-300"
                             )}
