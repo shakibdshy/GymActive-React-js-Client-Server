@@ -8,6 +8,9 @@ module.exports = {
         'jost': ['Jost'],
         'open': ['Open Sans'],
       },
+      colors: {
+        'black-800': '#222429',
+      }
     },
   },
   plugins: [],
