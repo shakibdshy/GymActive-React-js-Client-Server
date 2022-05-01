@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Proxima Nova'],
+        'jost': ['Jost'],
+        'open': ['Open Sans'],
       },
     },
   },
