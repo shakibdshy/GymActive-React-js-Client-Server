@@ -5,7 +5,7 @@ const BlogItem = () => {
   const { title } = useParams();
 
   return (
-    <section>
+    <section className='py-20 container mx-auto'>
       <h1>Blog Title Name: {title}</h1>
     </section>
   );
