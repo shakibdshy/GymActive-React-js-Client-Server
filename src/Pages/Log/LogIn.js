@@ -1,22 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../logo.png";
-import { useForm } from "react-hook-form";
 
 const LogIn = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
         <div className='h-full bg-gradient-to-tr from-cyan-500 to-blue-500 w-full py-16 pt-32 px-4'>
       <div className='flex flex-col items-center justify-center'>
         <img className='width={188px} height={74px}' src={logo} alt='' />
