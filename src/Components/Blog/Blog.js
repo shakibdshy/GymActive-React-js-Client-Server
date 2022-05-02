@@ -1,23 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import blogImage from "../../Images/Blog/blog.jpg";
+import blogImage2 from "../../Images/Blog/blog2.jpg";
+import blogImage3 from "../../Images/Blog/blog3.jpg";
 
 const Blog = () => {
   const items = [
     {
-      title: "50+ Best creative website themes & templates",
-      img: "https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-01.jpg",
+      title: "There are many variations of passages orem psum available",
+      img: blogImage,
       description:
         "Kindling the energy hidden in matter the only home we've ever known radio telescope decipherment descended from astronomers rogue.",
     },
     {
       title: "The ultimate UX and UI guide to card design",
-      img: "https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-02.jpg",
+      img: blogImage2,
       description:
         "Kindling the energy hidden in matter the only home we've ever known radio telescope decipherment descended from astronomers rogue.",
     },
     {
       title: "Creative Card Component designs graphic elements",
-      img: "https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-03.jpg",
+      img: blogImage3,
       description:
         "Kindling the energy hidden in matter the only home we've ever known radio telescope decipherment descended from astronomers rogue.",
     },
@@ -68,7 +71,7 @@ const Blog = () => {
                                rounded-full
                                text-base text-body-color
                                font-medium
-                               hover:border-primary hover:bg-primary hover:text-white
+                               hover:border-red-500 hover:bg-primary hover:text-red-500
                                transition
                                '>
                       View Details
