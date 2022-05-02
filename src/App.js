@@ -7,6 +7,8 @@ import BlogItem from "./Pages/Blog/BlogItem";
 import Home from "./Pages/Home/Home";
 import Inventory from "./Pages/Inventory/Inventory";
 import InventoryDetails from "./Pages/InventoryDetails/InventoryDetails";
+import LogIn from "./Pages/Log/LogIn";
+import SignUp from "./Pages/Log/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path='/inventory/:id' element={<InventoryDetails />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/:title' element={<BlogItem />} />
+        <Route path='/signin' element={<LogIn />} />
+        <Route path='/signup' element={<SignUp />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

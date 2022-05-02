@@ -3,7 +3,7 @@ import { Fragment, React } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import logo from "../../logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const user = {
@@ -77,7 +77,7 @@ const Header = () => {
                               alt=''
                             />
                           </Menu.Button> */}
-                          <button className='button button-red'>Sign In</button>
+                          <Link to='/signin' className='button button-red'>Sign In</Link>
                         </div>
                         <Transition
                           as={Fragment}
