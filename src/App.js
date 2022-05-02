@@ -7,6 +7,7 @@ import BlogItem from "./Pages/Blog/BlogItem";
 import Home from "./Pages/Home/Home";
 import Inventory from "./Pages/Inventory/Inventory";
 import InventoryDetails from "./Pages/InventoryDetails/InventoryDetails";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/inventory/:id' element={<InventoryDetails />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/:title' element={<BlogItem />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </>
