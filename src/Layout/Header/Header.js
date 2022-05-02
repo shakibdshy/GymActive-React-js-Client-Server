@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div>
       <div className='min-h-full'>
-        <Disclosure as='nav'>
+        <Disclosure as='nav' className='shadow-md fixed top-0 left-0 right-0 z-50 bg-white'>
           {({ open }) => (
             <>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
