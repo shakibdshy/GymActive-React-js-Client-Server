@@ -3,7 +3,7 @@ import { Fragment, React } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import logo from "../../logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const user = {
@@ -48,7 +48,7 @@ const Header = () => {
                     <div className='hidden md:block'>
                       <div className='ml-10 flex items-baseline space-x-4'>
                         {navigation.map((item) => (
-                          <Link
+                          <NavLink
                             key={item.name}
                             to={item.href}
                             className={classNames(
@@ -59,7 +59,7 @@ const Header = () => {
                             )}
                             aria-current={item.current ? "page" : undefined}>
                             {item.name}
-                          </Link>
+                          </NavLink>
                         ))}
                       </div>
                     </div>

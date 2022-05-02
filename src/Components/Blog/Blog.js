@@ -36,7 +36,7 @@ const Blog = () => {
         <div className='flex flex-wrap -mx-4'>
           {items.map((item, index) => {
             return (
-              <div key={index} className='w-full md:w-1/2 xl:w-1/3 px-4'>
+              <article key={index} className='w-full md:w-1/2 xl:w-1/3 px-4'>
                 <div className='bg-white rounded-lg overflow-hidden mb-10'>
                   <img src={item.img} alt='' className='w-full' />
                   <div className='p-8 sm:p-9 md:p-7 xl:p-9 text-center'>
@@ -78,7 +78,7 @@ const Blog = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

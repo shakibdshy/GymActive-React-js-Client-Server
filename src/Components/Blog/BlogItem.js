@@ -5,9 +5,9 @@ const BlogItem = () => {
   const { title } = useParams();
 
   return (
-    <div>
+    <section>
       <h1>Blog Title Name: {title}</h1>
-    </div>
+    </section>
   );
 };
 
