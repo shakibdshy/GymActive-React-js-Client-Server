@@ -12,7 +12,6 @@ function App() {
   return (
     <>
       <Header />
-
       <Routes>
         <Route index element={<Home />} />
         <Route path='/home' element={<Home />} />
@@ -21,7 +20,6 @@ function App() {
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/:title' element={<BlogItem />} />
       </Routes>
-
       <Footer />
     </>
   );
