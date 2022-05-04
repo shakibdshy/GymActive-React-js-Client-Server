@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import InputField from "../../Components/InputField/InputField";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";

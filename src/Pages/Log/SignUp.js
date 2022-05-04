@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../logo.png";
-import { useForm } from "react-hook-form";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
@@ -11,13 +10,6 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import InputField from "../../Components/InputField/InputField";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-
   const navigate = useNavigate();
 
   const navigateLogin = () => {
