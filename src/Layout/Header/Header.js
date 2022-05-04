@@ -7,21 +7,20 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
-  const [signInUser] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
-  const handelSignOut  = () => {
+  console.log(user);
+
+  const handelSignOut = () => {
     signOut(auth);
+    toast.info("Sign out successfully");
     console.log(signOut(auth));
-  }
-
-  const user = {
-    name: "Tom Cook",
-    email: "tom@example.com",
-    imageUrl:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   };
+
   const navigation = [
     { name: "Home", href: "/", current: true },
     { name: "Inventory", href: "/inventory", current: false },
@@ -32,7 +31,7 @@ const Header = () => {
     { name: "Manage Items", href: "#" },
     { name: "Add Item", href: "#" },
     { name: "My items", href: "#" },
-    { name: "Logout", href: "#" },
+    { name: "Logout", onClick: handelSignOut },
   ];
 
   function classNames(...classes) {
@@ -49,11 +48,7 @@ const Header = () => {
                 <div className='flex items-center justify-between h-28'>
                   <div className='flex items-center'>
                     <div className='flex-shrink-0'>
-                      <img
-                        className='h-8 w-8'
-                        src={logo}
-                        alt='logo'
-                      />
+                      <img className='h-8 w-8' src={logo} alt='logo' />
                     </div>
                     <div className='hidden md:block'>
                       <div className='ml-10 flex items-baseline space-x-4'>
@@ -79,15 +74,21 @@ const Header = () => {
                       {/* Profile dropdown */}
                       <Menu as='div' className='ml-3 relative'>
                         <div>
-                          {/* <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
-                            <span className='sr-only'>Open user menu</span>
-                            <img
-                              className='h-8 w-8 rounded-full'
-                              src={user.imageUrl}
-                              alt=''
-                            />
-                          </Menu.Button> */}
-                          <Link to='/signin' className='button button-red'>Sign In</Link>
+                          {user ? (
+                            <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
+                              <span className='sr-only'>Open user menu</span>
+                              <img
+                                className='h-8 w-8 rounded-full'
+                                src={user?.photoURL}
+                                alt=''
+                              />
+                            </Menu.Button>
+                            
+                          ) : (
+                            <Link to='/signin' className='button button-red'>
+                              Sign In
+                            </Link>
+                          )}
                         </div>
                         <Transition
                           as={Fragment}
@@ -98,20 +99,27 @@ const Header = () => {
                           leaveFrom='transform opacity-100 scale-100'
                           leaveTo='transform opacity-0 scale-95'>
                           <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
-                                    {item.name}
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            ))}
+                            <Link
+                              to='/manage'
+                              className='block px-4 py-2 text-sm text-gray-700'>
+                              Manage Items
+                            </Link>
+                            <Link
+                              to='/add'
+                              className='block px-4 py-2 text-sm text-gray-700'>
+                              Add Item
+                            </Link>
+                            <Link
+                              to='/myitems'
+                              className='block px-4 py-2 text-sm text-gray-700'>
+                              My items
+                            </Link>
+                            <Link
+                              to='/'
+                              onClick={handelSignOut}
+                              className='block px-4 py-2 text-sm text-gray-700'>
+                              Logout
+                            </Link>
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -157,16 +165,16 @@ const Header = () => {
                     <div className='flex-shrink-0'>
                       <img
                         className='h-10 w-10 rounded-full'
-                        src={user.imageUrl}
+                        src={user?.photoURL}
                         alt=''
                       />
                     </div>
                     <div className='ml-3'>
-                      <div className='text-base font-medium leading-none text-white'>
-                        {user.name}
+                      <div className='text-base font-medium leading-none text-gray-400'>
+                        {user?.displayName}
                       </div>
                       <div className='text-sm font-medium leading-none text-gray-400'>
-                        {user.email}
+                        {user?.email}
                       </div>
                     </div>
                     <button
@@ -192,6 +200,7 @@ const Header = () => {
             </>
           )}
         </Disclosure>
+        <ToastContainer />
       </div>
     </div>
   );

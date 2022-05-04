@@ -10,6 +10,7 @@ import auth from "../../firebase.init";
 import logo from "../../logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { updateProfile } from "firebase/auth";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -25,11 +26,11 @@ const LogIn = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    if (email || password) {
+    try {
       await signInWithEmailAndPassword(email, password);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Successfully Login");
-    } else {
+    } catch (error) {
       toast.error("Please enter valid details");
     }
   };
