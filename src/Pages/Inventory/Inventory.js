@@ -11,7 +11,7 @@ const Inventory = () => {
                 </h2>
             </div>
             <div className="container max-w-7xl mx-auto">
-                <div className="flex">
+                <div className="flex flex-wrap">
                     <InventoryItem />
                 </div>
             </div>
