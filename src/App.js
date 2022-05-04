@@ -8,6 +8,7 @@ import Home from "./Pages/Home/Home";
 import Inventory from "./Pages/Inventory/Inventory";
 import InventoryDetails from "./Pages/InventoryDetails/InventoryDetails";
 import LogIn from "./Pages/Log/LogIn";
+import RequireAuth from "./Pages/Log/RequireAuth";
 import SignUp from "./Pages/Log/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 
@@ -18,8 +19,22 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/inventory' element={<Inventory />} />
-        <Route path='/inventory/:id' element={<InventoryDetails />} />
+        <Route
+          path='/inventory'
+          element={
+            <RequireAuth>
+              <Inventory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path='/inventory/:id'
+          element={
+            <RequireAuth>
+              <InventoryDetails />
+            </RequireAuth>
+          }
+        />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/:title' element={<BlogItem />} />
         <Route path='/signin' element={<LogIn />} />

@@ -13,20 +13,12 @@ import "react-toastify/dist/ReactToastify.css";
 const Header = () => {
   const [user] = useAuthState(auth);
 
-  console.log(user);
-
   const handelSignOut = () => {
     signOut(auth);
     toast.info("Sign out successfully");
     console.log(signOut(auth));
   };
 
-  const navigation = [
-    { name: "Home", href: "/", current: true },
-    { name: "Inventory", href: "/inventory", current: false },
-    { name: "Testimonial", href: "/testimonial", current: false },
-    { name: "Blog", href: "/blog", current: false },
-  ];
   const userNavigation = [
     { name: "Manage Items", href: "#" },
     { name: "Add Item", href: "#" },
@@ -52,20 +44,28 @@ const Header = () => {
                     </div>
                     <div className='hidden md:block'>
                       <div className='ml-10 flex items-baseline space-x-4'>
-                        {navigation.map((item) => (
+                        <NavLink
+                          to='/'
+                          className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
+                          Home
+                        </NavLink>
+                        {user && (
                           <NavLink
-                            key={item.name}
-                            to={item.href}
-                            className={classNames(
-                              item.current
-                                ? "bg-gray-600 text-white"
-                                : "text-gray-900 hover:bg-gray-700 hover:text-white",
-                              "px-3 py-2 rounded-md text-lg font-bold transition-all ease-in duration-300"
-                            )}
-                            aria-current={item.current ? "page" : undefined}>
-                            {item.name}
+                            to='/inventory'
+                            className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
+                            Inventory
                           </NavLink>
-                        ))}
+                        )}
+                        <NavLink
+                          to='/testimonial'
+                          className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
+                          Testimonial
+                        </NavLink>
+                        <NavLink
+                          to='/blog'
+                          className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
+                          Blog
+                        </NavLink>
                       </div>
                     </div>
                   </div>
@@ -83,45 +83,46 @@ const Header = () => {
                                 alt=''
                               />
                             </Menu.Button>
-                            
                           ) : (
                             <Link to='/signin' className='button button-red'>
                               Sign In
                             </Link>
                           )}
                         </div>
-                        <Transition
-                          as={Fragment}
-                          enter='transition ease-out duration-100'
-                          enterFrom='transform opacity-0 scale-95'
-                          enterTo='transform opacity-100 scale-100'
-                          leave='transition ease-in duration-75'
-                          leaveFrom='transform opacity-100 scale-100'
-                          leaveTo='transform opacity-0 scale-95'>
-                          <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                            <Link
-                              to='/manage'
-                              className='block px-4 py-2 text-sm text-gray-700'>
-                              Manage Items
-                            </Link>
-                            <Link
-                              to='/add'
-                              className='block px-4 py-2 text-sm text-gray-700'>
-                              Add Item
-                            </Link>
-                            <Link
-                              to='/myitems'
-                              className='block px-4 py-2 text-sm text-gray-700'>
-                              My items
-                            </Link>
-                            <Link
-                              to='/'
-                              onClick={handelSignOut}
-                              className='block px-4 py-2 text-sm text-gray-700'>
-                              Logout
-                            </Link>
-                          </Menu.Items>
-                        </Transition>
+                        {user && (
+                          <Transition
+                            as={Fragment}
+                            enter='transition ease-out duration-100'
+                            enterFrom='transform opacity-0 scale-95'
+                            enterTo='transform opacity-100 scale-100'
+                            leave='transition ease-in duration-75'
+                            leaveFrom='transform opacity-100 scale-100'
+                            leaveTo='transform opacity-0 scale-95'>
+                            <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                              <Link
+                                to='/manage'
+                                className='block px-4 py-2 text-sm text-gray-700'>
+                                Manage Items
+                              </Link>
+                              <Link
+                                to='/add'
+                                className='block px-4 py-2 text-sm text-gray-700'>
+                                Add Item
+                              </Link>
+                              <Link
+                                to='/myitems'
+                                className='block px-4 py-2 text-sm text-gray-700'>
+                                My items
+                              </Link>
+                              <Link
+                                to='/'
+                                onClick={handelSignOut}
+                                className='block px-4 py-2 text-sm text-gray-700'>
+                                Logout
+                              </Link>
+                            </Menu.Items>
+                          </Transition>
+                        )}
                       </Menu>
                     </div>
                   </div>
@@ -144,57 +145,92 @@ const Header = () => {
 
               <Disclosure.Panel className='md:hidden'>
                 <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
-                  {navigation.map((item) => (
+                  <Disclosure.Button
+                    as='a'
+                    href='/'
+                    className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
+                    Home
+                  </Disclosure.Button>
+                  {user && (
                     <Disclosure.Button
-                      key={item.name}
                       as='a'
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block px-3 py-2 rounded-md text-base font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}>
-                      {item.name}
+                      href='/inventory'
+                      className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
+                      Inventory
                     </Disclosure.Button>
-                  ))}
+                  )}
+                  <Disclosure.Button
+                    as='a'
+                    href='/testimonial'
+                    className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
+                    Testimonial
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as='a'
+                    href='/blog'
+                    className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
+                    Blog
+                  </Disclosure.Button>
                 </div>
                 <div className='pt-4 pb-3 border-t border-gray-700'>
-                  <div className='flex items-center px-5'>
-                    <div className='flex-shrink-0'>
-                      <img
-                        className='h-10 w-10 rounded-full'
-                        src={user?.photoURL}
-                        alt=''
-                      />
-                    </div>
-                    <div className='ml-3'>
-                      <div className='text-base font-medium leading-none text-gray-400'>
-                        {user?.displayName}
+                  {user ? (
+                    <>
+                      <div className='flex items-center px-5'>
+                        <div className='flex-shrink-0'>
+                          <img
+                            className='h-10 w-10 rounded-full'
+                            src={user?.photoURL}
+                            alt=''
+                          />
+                        </div>
+                        <div className='ml-3'>
+                          <div className='text-base font-medium leading-none text-gray-400'>
+                            {user?.displayName}
+                          </div>
+                          <div className='text-sm font-medium leading-none text-gray-400'>
+                            {user?.email}
+                          </div>
+                        </div>
+                        <button
+                          type='button'
+                          className='ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
+                          <span className='sr-only'>View notifications</span>
+                          <BellIcon className='h-6 w-6' aria-hidden='true' />
+                        </button>
                       </div>
-                      <div className='text-sm font-medium leading-none text-gray-400'>
-                        {user?.email}
+                      <div className='mt-3 px-2 space-y-1'>
+                        <Disclosure.Button
+                          as='a'
+                          href='/manage'
+                          className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
+                          Mange Items
+                        </Disclosure.Button>
+                        <Disclosure.Button
+                          as='a'
+                          href='/add'
+                          className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
+                          Add Item
+                        </Disclosure.Button>
+                        <Disclosure.Button
+                          as='a'
+                          href='/myitem'
+                          className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
+                          My Items
+                        </Disclosure.Button>
+                        <Disclosure.Button
+                          as='a'
+                          href='/'
+                          onClick={handelSignOut}
+                          className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
+                          Logout
+                        </Disclosure.Button>
                       </div>
-                    </div>
-                    <button
-                      type='button'
-                      className='ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
-                      <span className='sr-only'>View notifications</span>
-                      <BellIcon className='h-6 w-6' aria-hidden='true' />
-                    </button>
-                  </div>
-                  <div className='mt-3 px-2 space-y-1'>
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as='a'
-                        href={item.href}
-                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
-                  </div>
+                    </>
+                  ) : (
+                    <Link to='/signin' className='button button-red'>
+                      Sign In
+                    </Link>
+                  )}
                 </div>
               </Disclosure.Panel>
             </>
