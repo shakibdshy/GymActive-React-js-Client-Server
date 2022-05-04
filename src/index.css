@@ -28,6 +28,10 @@
   .inventory-content:hover p {
     @apply text-white transition-all ease-in-out duration-300;
   }
+
+  .active {
+    @apply bg-red-500 text-white;
+  }
 }
 
 body {
