@@ -6,8 +6,10 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { ToastContainer, toast } from 'react-toastify';
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import InputField from "../../Components/InputField/InputField";
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -30,15 +32,22 @@ const SignUp = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    const name = event.target.firstName.value;
+    const name = event.target.fname.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     // const agree = event.target.terms.checked;
 
-    await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: name });
-    console.log("Updated profile");
-    navigate("/home");
+    if(email && password && name){
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
+      navigate("/home");
+      // console.log(updateProfile);
+      toast.success("Please verifying your email again");
+      
+    } else {
+      toast.error("Please enter valid details");
+    }
+
   };
 
   return (
@@ -84,6 +93,7 @@ const SignUp = () => {
                 Create my account
               </button>
             </div>
+            <ToastContainer />
           </div>
         </div>
       </div>
