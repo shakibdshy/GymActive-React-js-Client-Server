@@ -10,7 +10,6 @@ import auth from "../../firebase.init";
 import logo from "../../logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateProfile } from "firebase/auth";
 
 const LogIn = () => {
   const navigate = useNavigate();
