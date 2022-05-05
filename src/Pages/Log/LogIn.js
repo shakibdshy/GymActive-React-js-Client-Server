@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
@@ -12,25 +12,32 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LogIn = () => {
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  let errorElement;
 
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    setIsLoading(true);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
-    try {
+    if (email || password) {
       await signInWithEmailAndPassword(email, password);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Successfully Login");
-    } catch (error) {
+      setIsLoading(false);
+    } else {
       toast.error("Please enter valid details");
+      setIsLoading(false);
     }
   };
 
@@ -41,11 +48,11 @@ const LogIn = () => {
   }, [user]);
 
   const navigateRegister = () => {
-    navigate("/register");
+    navigate("/signup");
   };
 
   const resetPassword = async (e) => {
-    const email = e.target.email.value;
+    const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
       toast.success("Password reset email sent successfully");
@@ -59,7 +66,7 @@ const LogIn = () => {
       <form onSubmit={handleLogin}>
         <div className='h-full bg-gradient-to-tr from-cyan-500 to-blue-500 w-full py-16 pt-32 px-4'>
           <div className='flex flex-col items-center justify-center'>
-            <img className='width={188px} height={74px}' src={logo} alt='' />
+            <img className='w-[188px]' src={logo} alt='' />
             <div className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full max-w-[435px] p-10 mt-16'>
               <p
                 aria-label='Login to your account'
@@ -80,28 +87,39 @@ const LogIn = () => {
               <SocialLogin />
               <div>
                 <InputField
+                  ref={emailRef}
                   label='Email'
                   type='email'
                   name='email'
                   placeholder='Enter your Email'
+                  required
                 />
               </div>
               <div>
                 <InputField
+                  ref={passwordRef}
                   label='Password'
                   type='password'
                   name='password'
                   placeholder='Your Password'
+                  required
                 />
+                <span
+                  className='text-blue-500 cursor-pointer'
+                  onClick={resetPassword}>
+                  Forget Password
+                </span>
               </div>
               <div className='mt-8'>
                 <button
+                  disabled={isLoading}
                   type='submit'
                   aria-label='create my account'
                   className='focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full'>
                   Sign In
                 </button>
               </div>
+              {errorElement}
               <ToastContainer />
             </div>
           </div>

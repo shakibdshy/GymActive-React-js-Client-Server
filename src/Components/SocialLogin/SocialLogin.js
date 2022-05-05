@@ -13,11 +13,10 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const [signInWithGitHub, user1, loading1, error1] = useSignInWithGithub(auth);
-  const [signInWithFacebook, user2, loading2, error2] =
-    useSignInWithFacebook(auth);
+  const [signInWithFacebook, user2, loading2, error2] = useSignInWithFacebook(auth);
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
   let errorElement;
+  const from = location.state?.from?.pathname || "/";
 
   if (loading || loading1 || loading2) {
     return "Loading...";

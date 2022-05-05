@@ -16,15 +16,8 @@ const Header = () => {
   const handelSignOut = () => {
     signOut(auth);
     toast.info("Sign out successfully");
-    console.log(signOut(auth));
+    // console.log(signOut(auth));
   };
-
-  const userNavigation = [
-    { name: "Manage Items", href: "#" },
-    { name: "Add Item", href: "#" },
-    { name: "My items", href: "#" },
-    { name: "Logout", onClick: handelSignOut },
-  ];
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");

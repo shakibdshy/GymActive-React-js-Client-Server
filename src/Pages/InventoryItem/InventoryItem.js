@@ -1,9 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useInventory from "../../Hooks/useInventory";
 
 const InventoryItem = () => {
   const [inventories, setInventories] = useInventory();
+  const navigate = useNavigate();
+
+  const navigateToInventoryDetails = (id) => {
+    navigate(`/inventory/${id}`);
+  }
 
   return (
     <>
@@ -33,11 +38,12 @@ const InventoryItem = () => {
                   </li>
                 </ul>
                 <h3 className='mt-4 font-bold text-xl text-black hover:text-red-500 transition-all ease-in-out duration-300'>
-                  <Link to=''>{inventory.name}</Link>
+                  <button onClick={() => navigateToInventoryDetails(inventory._id)}>{inventory.name}</button>
                 </h3>
                 <p className='mt-4 text-[#777777]'>
                   {inventory.content.slice(0, 100)}
                 </p>
+                <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-red mt-5 inline-block shadow-lg">Manage</button>
               </div>
             </div>
 

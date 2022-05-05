@@ -28,6 +28,7 @@ const SignUp = () => {
 
   if (user) {
     console.log("user", user);
+
   }
 
   const handleRegister = async (event) => {
@@ -41,7 +42,7 @@ const SignUp = () => {
       await createUserWithEmailAndPassword(email, password);
       await updateProfile({ displayName: name });
       navigate("/home");
-      // console.log(updateProfile);
+      
       toast.success("Please verifying your email again");
       
     } else {
@@ -54,7 +55,7 @@ const SignUp = () => {
     <form onSubmit={handleRegister}>
       <div className='h-full bg-gradient-to-tr from-cyan-500 to-blue-500 w-full py-16 pt-32 px-4'>
         <div className='flex flex-col items-center justify-center'>
-          <img className='width={188px} height={74px}' src={logo} alt='' />
+          <img className='w-[188px]' src={logo} alt='' />
           <div className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full max-w-[435px] p-10 mt-16'>
             <p
               aria-label='Login to your account'
