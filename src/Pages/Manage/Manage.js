@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useInventory from "../../Hooks/useInventory";
 
 const Manage = () => {
@@ -30,12 +30,15 @@ const Manage = () => {
   return (
     <>
       <div className='container max-w-6xl mx-auto py-24'>
+        <div className="mb-8">
+          <Link to='/add' className='button button-black'>Add New Item</Link>
+        </div>
         <div className='flex flex-col gap-8'>
           {inventories.map((inventory) => {
             return (
               <div
                 key={inventory._id}
-                className='w-full flex flex-col md:flex-row px-4'>
+                className='w-full flex flex-col md:flex-row'>
                 <div className='rounded-xl relative flex-auto md:w-2/5'>
                   <img
                     className='rounded-xl md:rounded-l-xl md:rounded-r-none w-full h-[270px] object-cover'
@@ -43,7 +46,7 @@ const Manage = () => {
                     alt=''
                   />
                   <span className='py-1 px-3 absolute bottom-4 left-4 inline-block uppercase text-sm font-semibold rounded bg-red-600 text-white'>
-                    {inventory.price}
+                    ${inventory.price}
                   </span>
                 </div>
                 <div className='inventory-content mt-8 md:mt-0 py-6 px-8 bg-[#F6F6F6] rounded-[10px] md:rounded-r-[10px] md:rounded-l-none transition-all ease-in-out duration-300 hover:bg-slate-700'>

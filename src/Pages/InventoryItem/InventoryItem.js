@@ -23,7 +23,7 @@ const InventoryItem = () => {
                   alt=''
                 />
                 <span className='py-1 px-3 absolute bottom-4 left-4 inline-block uppercase text-sm font-semibold rounded bg-red-600 text-white'>
-                  {inventory.price}
+                  ${inventory.price}
                 </span>
               </div>
               <div className='inventory-content mt-8 py-6 px-8 bg-[#F6F6F6] rounded-[10px] transition-all ease-in-out duration-300 hover:bg-red-500'>
