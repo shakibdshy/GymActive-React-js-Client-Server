@@ -206,7 +206,7 @@ const Header = () => {
                         </Disclosure.Button>
                         <Disclosure.Button
                           as='a'
-                          href='/myitem'
+                          href='/myitems'
                           className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'>
                           My Items
                         </Disclosure.Button>
