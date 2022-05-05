@@ -11,6 +11,7 @@ import InventoryDetails from "./Pages/InventoryDetails/InventoryDetails";
 import LogIn from "./Pages/Log/LogIn";
 import RequireAuth from "./Pages/Log/RequireAuth";
 import SignUp from "./Pages/Log/SignUp";
+import Manage from "./Pages/Manage/Manage";
 import MyItems from "./Pages/MyItems/MyItems";
 import NotFound from "./Pages/NotFound/NotFound";
 
@@ -26,6 +27,14 @@ function App() {
           element={
             <RequireAuth>
               <Inventory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path='/manage'
+          element={
+            <RequireAuth>
+              <Manage />
             </RequireAuth>
           }
         />
