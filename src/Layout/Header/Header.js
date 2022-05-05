@@ -94,23 +94,23 @@ const Header = () => {
                             <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
                               <Link
                                 to='/manage'
-                                className='block px-4 py-2 text-sm text-gray-700'>
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white transition-all ease-in-out duration-200'>
                                 Manage Items
                               </Link>
                               <Link
                                 to='/add'
-                                className='block px-4 py-2 text-sm text-gray-700'>
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white transition-all ease-in-out duration-200'>
                                 Add Item
                               </Link>
                               <Link
                                 to='/myitems'
-                                className='block px-4 py-2 text-sm text-gray-700'>
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white transition-all ease-in-out duration-200'>
                                 My items
                               </Link>
                               <Link
                                 to='/'
                                 onClick={handelSignOut}
-                                className='block px-4 py-2 text-sm text-gray-700'>
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white transition-all ease-in-out duration-200'>
                                 Logout
                               </Link>
                             </Menu.Items>
