@@ -44,7 +44,7 @@ const Header = () => {
                         </NavLink>
                         {user && (
                           <NavLink
-                            to='/inventory'
+                            to='/manage'
                             className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
                             Inventory
                           </NavLink>
@@ -147,7 +147,7 @@ const Header = () => {
                   {user && (
                     <Disclosure.Button
                       as='a'
-                      href='/inventory'
+                      href='/manage'
                       className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
                       Inventory
                     </Disclosure.Button>

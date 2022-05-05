@@ -21,7 +21,7 @@ const InventoryDetails = () => {
                             <img src={inventory.image} alt="" className="w-full h-[580px] object-cover" />
                         </div>
                         <div className="w-full lg:w-1/2 p-4">
-                            <p className="text-xl font-medium flex flex-wrap gap-4 mt-4"><strong>Product Id:</strong> <span className='text-md font-open text-gray-500'>{inventory._id}</span></p>
+                            <p className="text-xl font-medium flex flex-wrap gap-4"><strong>Product Id:</strong> <span className='text-md font-open text-gray-500'>{inventory._id}</span></p>
                             <h2 className="text-3xl font-bold flex flex-wrap gap-4 mt-4"><strong>Product Name:</strong> <span>{inventory.name}</span></h2>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Supplier:</strong> <span className='text-md font-open'>{inventory.supplier}</span></p>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Price:</strong> <span className='text-md font-open'>{inventory.price}</span></p>

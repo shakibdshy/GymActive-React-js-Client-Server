@@ -37,18 +37,18 @@ const InventoryItem = () => {
                     <span className='ml-2 text-[#777777]'>{inventory.quantity}</span>
                   </li>
                 </ul>
-                <h3 className='mt-4 font-bold text-xl text-black hover:text-red-500 transition-all ease-in-out duration-300'>
-                  <button onClick={() => navigateToInventoryDetails(inventory._id)}>{inventory.name}</button>
+                <h3 className='mt-4 font-bold text-xl text-black hover:text-red-500 cursor-pointer transition-all ease-in-out duration-300'>
+                  <span onClick={() => navigateToInventoryDetails(inventory._id)}>{inventory.name}</span>
                 </h3>
                 <p className='mt-4 text-[#777777]'>
                   {inventory.content.slice(0, 100)}
                 </p>
-                <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-red mt-5 inline-block shadow-lg">Manage</button>
+                <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-red mt-5 inline-block shadow-lg">Read More</button>
               </div>
             </div>
 
           );
-        })
+        }).slice(0, 6)
       }
     </>
   );

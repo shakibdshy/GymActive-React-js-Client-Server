@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import InventoryItem from '../InventoryItem/InventoryItem';
 
 const Inventory = () => {
@@ -13,6 +14,9 @@ const Inventory = () => {
             <div className="container max-w-7xl mx-auto">
                 <div className="flex flex-wrap">
                     <InventoryItem />
+                </div>
+                <div className="mt-20 text-center">
+                    <Link to='/manage'  className="button button-black inline-block">Manage Inventories</Link>
                 </div>
             </div>
         </section>
