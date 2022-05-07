@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useInventory from "../../Hooks/useInventory";
+import useNewInventory from "../../Hooks/useNewInventory";
 
 const Manage = () => {
   const [inventories, setInventories] = useInventory();
@@ -16,8 +17,8 @@ const Manage = () => {
         method: "DELETE",
       })
       .then(res => res.json())
-      .then(result => {
-        console.log(result);
+        .then(result => {
+          console.log(result);
         setInventories(inventories.filter(inventory => inventory._id !== id));
       });
     }

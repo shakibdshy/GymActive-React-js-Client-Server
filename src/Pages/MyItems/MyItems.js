@@ -23,6 +23,22 @@ const MyItems = () => {
         getItems();
     }, [user]);
 
+    const handelDelete = id => {
+        const process = window.confirm("Are you sure you want to delete this item?");
+
+        if (process) {
+            const url = `http://localhost:5000/newitems/${id}`;
+            fetch(url, {
+                method: "DELETE",
+            })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result);
+                    setItems(items.filter(item => item._id !== id));
+                });
+        }
+    }
+
     return (
         <>
             <div className='container mx-auto py-24'>
@@ -60,7 +76,7 @@ const MyItems = () => {
                                         </p>
                                         <div className="flex flex-wrap gap-4 mt-4">
                                             <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-black">Manage</button>
-                                            <button className="button button-red">Delete</button>
+                                            <button onClick={() => handelDelete(inventory._id)} className="button button-red">Delete</button>
                                         </div>
                                     </div>
                                 </div>

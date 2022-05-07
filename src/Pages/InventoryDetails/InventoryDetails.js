@@ -44,7 +44,6 @@ const InventoryDetails = () => {
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Quantity:</strong> <span className='text-md font-open'>{quantity}</span></p>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Sold:</strong> <span className='text-md font-open'>{sold}</span></p>
                             <div className="flex flex-wrap gap-4 mt-4">
-                                <button className="button button-black">Manage</button>
                                 <button onClick={() => removeOne(_id)} className="button button-red">Delivered</button>
                             </div>
                         </div>
