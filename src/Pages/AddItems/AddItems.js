@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import useInventoryDetail from "../../Hooks/useInventoryDetails";
 
 const AddItems = () => {
   const [user] = useAuthState(auth);
@@ -17,35 +16,21 @@ const AddItems = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (myData) => {
     const url = "http://localhost:5000/inventory";
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(myData),
     })
       .then((res) => res.json())
       .then(result => console.log(result));
-    
-    const newData = {
-      email: user.email,
-      name: data.name,
-      supplier: data.supplier,
-      quantity: data.quantity,
-      content: data.content,
-      image: data.image,
-      price: data.price,
-    }
-    
-    axios.post("http://localhost:5000/newitems", newData)
-      .then(response => {
-        const { newData } = response;
-        if (newData.insertedId) {
-          toast("Item added successfully");
-        }
-      });
+
+    const { data } = axios.post('http://localhost:5000/newitems',
+      { ...myData, email: user.email });
+    console.log(data);
   };
 
   return (
@@ -53,7 +38,7 @@ const AddItems = () => {
       <h2 className="text-3xl text-slate-900 font-bold pb-8 text-center uppercase">Add Inventory</h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-        <input className='hidden w-full lg:flex items-center text-sm leading-6 bg-slate-200 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-3 pl-3 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' type='email' value={user?.email} placeholder="Email address" disabled/>
+        <input className='hidden w-full lg:flex items-center text-sm leading-6 bg-slate-200 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-3 pl-3 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' type='email' value={user?.email} placeholder="Email address" disabled />
         <input className='hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-3 pl-3 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' placeholder="Name" {...register("name")} />
         <input className='hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-3 pl-3 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' placeholder="Supplier" {...register("supplier")} />
         <input className='hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-3 pl-3 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700' placeholder="Quantity" {...register("quantity")} />
