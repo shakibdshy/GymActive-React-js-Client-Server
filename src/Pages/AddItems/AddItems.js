@@ -30,7 +30,6 @@ const AddItems = () => {
 
     const { data } = axios.post('http://localhost:5000/newitems',
       { ...myData, email: user.email });
-    console.log(data);
   };
 
   return (

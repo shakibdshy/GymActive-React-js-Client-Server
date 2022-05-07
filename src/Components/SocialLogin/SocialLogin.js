@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useSignInWithFacebook,
   useSignInWithGithub,
@@ -18,6 +18,12 @@ const SocialLogin = () => {
   let errorElement;
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (user || user1 || user2) {
+      navigate(from, { replace: true });
+    }
+  }, [user, user1, user2]);
+
   if (loading || loading1 || loading2) {
     return "Loading...";
   }
@@ -28,10 +34,6 @@ const SocialLogin = () => {
         Error: {error?.message} {error1?.message} {error2?.message}
       </p>
     );
-  }
-
-  if (user || user1 || user2) {
-    navigate(from, { replace: true });
   }
 
   return (
