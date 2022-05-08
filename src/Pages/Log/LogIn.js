@@ -10,6 +10,7 @@ import logo from "../../logo.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const LogIn = () => {
   const emailRef = useRef("");
@@ -124,6 +125,7 @@ const LogIn = () => {
                   Sign In
                 </button>
               </div>
+              <ClipLoader className='mx-auto mt-4' color={"#36D7B7"} loading={loading} size={30} />
               {errorElement}
             </div>
           </div>
