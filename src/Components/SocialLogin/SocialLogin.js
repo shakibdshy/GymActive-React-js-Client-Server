@@ -16,7 +16,6 @@ const SocialLogin = () => {
   const [signInWithGitHub, user1, loading1, error1] = useSignInWithGithub(auth);
   const [signInWithFacebook, user2, loading2, error2] = useSignInWithFacebook(auth);
   const location = useLocation();
-  let errorElement;
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {

@@ -4,12 +4,12 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import InputField from "../../Components/InputField/InputField";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import auth from "../../firebase.init";
 import logo from "../../logo.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const LogIn = () => {
   const emailRef = useRef("");
@@ -24,6 +24,12 @@ const LogIn = () => {
 
   const from = location.state?.from?.pathname || "/";
 
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate(from, { replace: true });
+  //   }
+  // }, [user]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -32,6 +38,10 @@ const LogIn = () => {
 
     if (email || password) {
       await signInWithEmailAndPassword(email, password);
+      const { data } = await axios.post("https://gymactive.herokuapp.com/login", { email });
+      console.log(data);
+      localStorage.setItem("accessToken", data.token);
+      navigate(from, { replace: true });
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Successfully Login");
       setIsLoading(false);
@@ -40,12 +50,6 @@ const LogIn = () => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [user]);
 
   const navigateRegister = () => {
     navigate("/signup");

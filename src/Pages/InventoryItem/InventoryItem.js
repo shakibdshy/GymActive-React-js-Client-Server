@@ -43,7 +43,7 @@ const InventoryItem = () => {
                 <p className='mt-4 text-[#777777]'>
                   {inventory.content.slice(0, 100)}
                 </p>
-                <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-red mt-5 inline-block shadow-lg">Read More</button>
+                <button onClick={() => navigateToInventoryDetails(inventory._id)} className="button button-red mt-5 inline-block shadow-lg">Manage</button>
               </div>
             </div>
 

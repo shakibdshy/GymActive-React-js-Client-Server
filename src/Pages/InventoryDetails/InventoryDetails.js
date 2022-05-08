@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Swal from "sweetalert2";
 
 const InventoryDetails = () => {
     const { inventoryId } = useParams();
