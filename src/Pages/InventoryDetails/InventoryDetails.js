@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
 
 const InventoryDetails = () => {
     const { inventoryId } = useParams();
@@ -72,7 +73,7 @@ const InventoryDetails = () => {
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Quantity:</strong> <span className='text-md font-open'>{quantity}</span></p>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Sold:</strong> <span className='text-md font-open'>{sold}</span></p>
                             <div className="flex flex-wrap gap-4 mt-4">
-                                <button onClick={() => addOne(_id)} className="button button-red">Add New Quantity</button>
+                                <button onClick={() => addOne(_id)} className="button button-red">Add Quantity</button>
                                 <button onClick={() => removeOne(_id)} className="button button-red">Delivered</button>
                             </div>
                         </div>

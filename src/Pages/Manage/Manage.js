@@ -30,7 +30,7 @@ const Manage = () => {
 
   return (
     <>
-      <div className='container max-w-6xl mx-auto py-24'>
+      <div className='container max-w-6xl mx-auto py-24 px-6'>
         <div className="mb-8">
           <Link to='/add' className='button button-black'>Add New Item</Link>
         </div>
@@ -40,9 +40,9 @@ const Manage = () => {
               <div
                 key={inventory._id}
                 className='w-full flex flex-col md:flex-row'>
-                <div className='rounded-xl relative flex-auto md:w-2/5'>
+                <div className='rounded-xl relative grow-0 shrink-0 basis-auto md:w-2/5 xl:w-2/5'>
                   <img
-                    className='rounded-xl md:rounded-l-xl md:rounded-r-none w-full h-[270px] object-cover'
+                    className='rounded-xl md:rounded-l-xl md:rounded-r-none w-full md:h-[310px] xl:h-[300px] object-cover'
                     src={inventory.image}
                     alt=''
                   />

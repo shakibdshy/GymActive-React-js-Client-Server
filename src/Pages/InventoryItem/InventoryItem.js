@@ -18,7 +18,7 @@ const InventoryItem = () => {
             <div key={inventory._id} className='w-full md:w-1/2 xl:w-1/3 px-4 mt-8'>
               <div className='rounded-xl relative'>
                 <img
-                  className='rounded-xl w-full h-[270px] object-cover'
+                  className='rounded-xl w-full md:h-[310px] xl:h-[300px] object-cover'
                   src={inventory.image}
                   alt=''
                 />
