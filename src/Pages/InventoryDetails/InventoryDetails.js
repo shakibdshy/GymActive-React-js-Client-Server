@@ -41,6 +41,20 @@ const InventoryDetails = () => {
         }
     }
 
+    const addOne = (id) => {
+        let newQuantity = parseInt(quantity) + 1;
+        const newObject = { ...inventory, quantity: newQuantity };
+        setinventory(newObject);
+        fetch(`https://gymactive.herokuapp.com/update-quantity/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newObject)
+        })
+        toast.success('Added Quantity');
+    }
+
     return (
         <>
             <div className="py-24">
@@ -58,7 +72,8 @@ const InventoryDetails = () => {
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Quantity:</strong> <span className='text-md font-open'>{quantity}</span></p>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Sold:</strong> <span className='text-md font-open'>{sold}</span></p>
                             <div className="flex flex-wrap gap-4 mt-4">
-                                <button onClick={() => removeOne(_id)} {...quantity === 0 ? 'disabled' : 'active'} className="button button-red">Delivered</button>
+                                <button onClick={() => addOne(_id)} className="button button-red">Add New Quantity</button>
+                                <button onClick={() => removeOne(_id)} className="button button-red">Delivered</button>
                             </div>
                         </div>
                     </div>
