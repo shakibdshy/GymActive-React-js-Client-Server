@@ -24,11 +24,15 @@ const LogIn = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate(from, { replace: true });
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user]);
+
+  if (error) {
+    toast.error(`${error?.message}`)
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,7 +45,6 @@ const LogIn = () => {
       const { data } = await axios.post("https://gymactive.herokuapp.com/login", { email });
       console.log(data);
       localStorage.setItem("accessToken", data.token);
-      navigate(from, { replace: true });
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Successfully Login");
       setIsLoading(false);
@@ -115,7 +118,6 @@ const LogIn = () => {
               </div>
               <div className='mt-8'>
                 <button
-                  disabled={isLoading}
                   type='submit'
                   aria-label='create my account'
                   className='focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full'>
