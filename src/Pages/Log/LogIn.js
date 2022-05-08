@@ -8,7 +8,7 @@ import InputField from "../../Components/InputField/InputField";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import auth from "../../firebase.init";
 import logo from "../../logo.png";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LogIn = () => {

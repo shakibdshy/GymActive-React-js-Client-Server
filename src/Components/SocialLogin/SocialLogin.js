@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaGithub } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
@@ -29,16 +30,11 @@ const SocialLogin = () => {
   }
 
   if (error || error1 || error2) {
-    errorElement = (
-      <p className='text-danger'>
-        Error: {error?.message} {error1?.message} {error2?.message}
-      </p>
-    );
+    toast.error(`${error?.message} || ${error1?.message} || ${error2?.message}`);
   }
 
   return (
     <>
-      {errorElement}
       <button
         onClick={() => signInWithGoogle()}
         aria-label='Continue with google'
@@ -54,7 +50,7 @@ const SocialLogin = () => {
         aria-label='Continue with github'
         type='button'
         className='focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4'>
-        <FaFacebook />
+        <FaGithub />
         <p className='text-base font-medium ml-4 text-gray-700'>
           Continue with Github
         </p>
@@ -64,7 +60,7 @@ const SocialLogin = () => {
         aria-label='Continue with twitter'
         type='button'
         className='focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4'>
-        <FaGithub />
+        <FaFacebook />
         <p className='text-base font-medium ml-4 text-gray-700'>
           Continue with Facebook
         </p>
