@@ -86,24 +86,24 @@ const LogIn = () => {
               </p>
               <SocialLogin />
               <div>
-                <InputField
+                <label htmlFor='email' className='label-control'>Email</label>
+                <input className="input-control"
                   ref={emailRef}
-                  label='Email'
+                  id='email'
                   type='email'
                   name='email'
                   placeholder='Enter your Email'
-                  required
-                />
+                  required />
               </div>
               <div>
-                <InputField
+                <label htmlFor='password' className='label-control'>Password</label>
+                <input className="input-control"
                   ref={passwordRef}
-                  label='Password'
+                  id='password'
                   type='password'
                   name='password'
-                  placeholder='Your Password'
-                  required
-                />
+                  placeholder='Enter your Password'
+                  required />
                 <span
                   className='text-blue-500 cursor-pointer'
                   onClick={resetPassword}>
