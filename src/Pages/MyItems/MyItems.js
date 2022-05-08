@@ -16,7 +16,7 @@ const MyItems = () => {
     useEffect(() => {
         const getItems = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/newitems?email=${email}`;
+            const url = `https://gymactive.herokuapp.com/newitems?email=${email}`;
             const { data } = await axios.get(url);
             setItems(data);
         }
@@ -27,7 +27,7 @@ const MyItems = () => {
         const process = window.confirm("Are you sure you want to delete this item?");
 
         if (process) {
-            const url = `http://localhost:5000/newitems/${id}`;
+            const url = `https://gymactive.herokuapp.com/newitems/${id}`;
             fetch(url, {
                 method: "DELETE",
             })

@@ -17,7 +17,7 @@ const AddItems = () => {
   } = useForm();
 
   const onSubmit = (myData) => {
-    const url = "http://localhost:5000/inventory";
+    const url = "https://gymactive.herokuapp.com/inventory";
     const newData = {...myData, sold: 0}
     fetch(url, {
       method: "POST",
@@ -29,7 +29,7 @@ const AddItems = () => {
       .then((res) => res.json())
       .then(result => console.log(result));
 
-    const { data } = axios.post('http://localhost:5000/newitems',
+    const { data } = axios.post('https://gymactive.herokuapp.com/newitems',
       { ...myData, email: user.email, sold: 0 });
   };
 

@@ -10,12 +10,12 @@ const InventoryDetails = () => {
 
     useEffect(() => {
         if (parseInt(indexNumber) === 2) {
-            const url = `http://localhost:5000/inventory/${itemId}`;
+            const url = `https://gymactive.herokuapp.com/inventory/${itemId}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => setinventory(data));
         } else if (parseInt(indexNumber) === 1) {
-            const url = `http://localhost:5000/newitems/${itemId}`;
+            const url = `https://gymactive.herokuapp.com/newitems/${itemId}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => setinventory(data));
@@ -27,7 +27,7 @@ const InventoryDetails = () => {
         let newSold = parseInt(sold) + 1;
         const newObject = { ...inventory, quantity: newQuantity, sold: newSold };
         setinventory(newObject);
-        fetch(`http://localhost:5000/update-quantity/${id}`, {
+        fetch(`https://gymactive.herokuapp.com/update-quantity/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
