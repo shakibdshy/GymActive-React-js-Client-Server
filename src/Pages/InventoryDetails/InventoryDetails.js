@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const InventoryDetails = () => {
     const { inventoryId } = useParams();
@@ -24,16 +25,20 @@ const InventoryDetails = () => {
 
     function removeOne(id) {
         let newQuantity = quantity - 1;
-        let newSold = parseInt(sold) + 1;
-        const newObject = { ...inventory, quantity: newQuantity, sold: newSold };
-        setinventory(newObject);
-        fetch(`https://gymactive.herokuapp.com/update-quantity/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newObject)
-        })
+        if (newQuantity >= 0 ) {
+            let newSold = parseInt(sold) + 1;
+            const newObject = { ...inventory, quantity: newQuantity, sold: newSold };
+            setinventory(newObject);
+            fetch(`https://gymactive.herokuapp.com/update-quantity/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newObject)
+            })
+        } else {
+            toast.error('You dont have any Quantity');
+        }
     }
 
     return (
@@ -53,7 +58,7 @@ const InventoryDetails = () => {
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Quantity:</strong> <span className='text-md font-open'>{quantity}</span></p>
                             <p className="text-xl text-gray-800 flex flex-wrap gap-4 mt-4"><strong>Sold:</strong> <span className='text-md font-open'>{sold}</span></p>
                             <div className="flex flex-wrap gap-4 mt-4">
-                                <button onClick={() => removeOne(_id)} className="button button-red">Delivered</button>
+                                <button onClick={() => removeOne(_id)} {...quantity === 0 ? 'disabled' : 'active'} className="button button-red">Delivered</button>
                             </div>
                         </div>
                     </div>
