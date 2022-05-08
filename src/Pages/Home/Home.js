@@ -1,8 +1,8 @@
 import React from "react";
 import Banner from "../../Components/Banner/Banner";
-import Blog from "../Blog/Blog";
 import Testimonial from "../../Components/Testimonial/Testimonial";
 import Inventory from "../Inventory/Inventory";
+import BlogComponent from "../../Components/BlogComponent/BlogComponent";
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       <Banner />
       <Inventory />
       <Testimonial />
-      <Blog />
+      <BlogComponent />
     </>
   );
 };

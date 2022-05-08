@@ -50,11 +50,6 @@ const Header = () => {
                           </NavLink>
                         )}
                         <NavLink
-                          to='/testimonial'
-                          className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
-                          Testimonial
-                        </NavLink>
-                        <NavLink
                           to='/blog'
                           className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300'>
                           Blog
@@ -152,12 +147,6 @@ const Header = () => {
                       Inventory
                     </Disclosure.Button>
                   )}
-                  <Disclosure.Button
-                    as='a'
-                    href='/testimonial'
-                    className='px-3 py-2 rounded-md text-lg font-bold hover:bg-red-500 hover:text-white transition-all ease-in duration-300 block'>
-                    Testimonial
-                  </Disclosure.Button>
                   <Disclosure.Button
                     as='a'
                     href='/blog'

@@ -120,7 +120,6 @@ const LogIn = () => {
                 </button>
               </div>
               {errorElement}
-              <ToastContainer />
             </div>
           </div>
         </div>
