@@ -18,18 +18,19 @@ const AddItems = () => {
 
   const onSubmit = (myData) => {
     const url = "http://localhost:5000/inventory";
+    const newData = {...myData, sold: 0}
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(myData),
+      body: JSON.stringify(newData),
     })
       .then((res) => res.json())
       .then(result => console.log(result));
 
     const { data } = axios.post('http://localhost:5000/newitems',
-      { ...myData, email: user.email });
+      { ...myData, email: user.email, sold: 0 });
   };
 
   return (

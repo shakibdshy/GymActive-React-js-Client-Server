@@ -10,7 +10,7 @@ const MyItems = () => {
     const navigate = useNavigate();
 
     const navigateToInventoryDetails = (id) => {
-        navigate(`/inventory/${id}`);
+        navigate(`/inventory/1@${id}`);
     }
 
     useEffect(() => {

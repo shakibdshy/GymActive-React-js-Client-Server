@@ -3,14 +3,23 @@ import { useParams } from 'react-router-dom';
 
 const InventoryDetails = () => {
     const { inventoryId } = useParams();
+    const [indexNumber, itemId] = inventoryId.split('@');
+    console.log(indexNumber, itemId);
     const [inventory, setinventory] = useState({});
     const { _id, name, content, image, price, supplier, quantity, sold } = inventory;
 
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${inventoryId}`;
-        fetch(url)
-        .then(res => res.json())
-        .then(data => setinventory(data));
+        if (parseInt(indexNumber) === 2) {
+            const url = `http://localhost:5000/inventory/${itemId}`;
+            fetch(url)
+                .then(res => res.json())
+                .then(data => setinventory(data));
+        } else if (parseInt(indexNumber) === 1) {
+            const url = `http://localhost:5000/newitems/${itemId}`;
+            fetch(url)
+                .then(res => res.json())
+                .then(data => setinventory(data));
+        }
     }, [inventoryId]);
 
     function removeOne(id) {
@@ -26,7 +35,7 @@ const InventoryDetails = () => {
             body: JSON.stringify(newObject)
         })
     }
-    
+
     return (
         <>
             <div className="py-24">
@@ -48,7 +57,7 @@ const InventoryDetails = () => {
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
         </>
     );

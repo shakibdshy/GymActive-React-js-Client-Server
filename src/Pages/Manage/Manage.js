@@ -25,7 +25,7 @@ const Manage = () => {
   }
 
   const navigateToInventoryDetails = (id) => {
-    navigate(`/inventory/${id}`);
+    navigate(`/inventory/2@${id}`);
   };
 
   return (
@@ -76,7 +76,7 @@ const Manage = () => {
                     </button>
                   </h3>
                   <p className='mt-4 text-[#777777]'>
-                    {inventory.content.slice(0, 200)}
+                    {inventory.content?.slice(0, 200)}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-4">
                   <button
